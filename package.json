@@ -1,0 +1,29 @@
+{
+  "name": "proyecto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "dependencies": {
+    "@truffle/contract": "^4.6.23",
+    "bootstrap": "^5.3.0",
+    "lite-server": "^2.6.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndresLagunes/Proyecto_Blockchain.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndresLagunes/Proyecto_Blockchain/issues"
+  },
+  "homepage": "https://github.com/AndresLagunes/Proyecto_Blockchain#readme"
+}
