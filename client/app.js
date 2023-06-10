@@ -5,7 +5,7 @@ App = {
     await App.loadAccount();
     await App.loadContract();
     await App.render();
-    await App.renderTasks();
+    await App.renderBooks();
   },
   loadEthereum: async () => {
     if (window.ethereum) {
@@ -27,12 +27,12 @@ App = {
   },
   loadContract: async () => {
     try {
-      const res = await fetch("TareasContrato.json");
-      const TareasContratoJSON = await res.json();
-      App.contracts.TareasContrato = TruffleContract(TareasContratoJSON);
-      App.contracts.TareasContrato.setProvider(App.web3Provider);
+      const res = await fetch("LibrosContrato.json");
+      const LibrosContratoJSON = await res.json();
+      App.contracts.LibrosContrato = TruffleContract(LibrosContratoJSON);
+      App.contracts.LibrosContrato.setProvider(App.web3Provider);
 
-      App.TareasContrato = await App.contracts.TareasContrato.deployed();
+      App.LibrosContrato = await App.contracts.LibrosContrato.deployed();
     } catch (error) {
       console.error(error);
     }
@@ -40,45 +40,45 @@ App = {
   render: async () => {
     document.getElementById("account").innerText = App.account;
   },
-  renderTasks: async () => {
-    const tc = await App.TareasContrato.contadorDeTareas();
-    const numeroDeTareas = tc.toNumber();
+  renderBooks: async () => {
+    const lc = await App.LibrosContrato.contadorDeLibros();
+    const numeroDeLibros = lc.toNumber();
 
     let html = "";
 
-    for (let i = 1; i <= numeroDeTareas; i++) {
-      const tarea = await App.TareasContrato.tareas(i);
-      const tareaId = tarea[0].toNumber();
-      const tareaTitulo = tarea[1];
-      const tareaDescripcion = tarea[2];
-      const tareaHecha = tarea[3];
-      const tareaCreadaEn = tarea[4];
+    for (let i = 1; i <= numeroDeLibros; i++) {
+      const libro = await App.LibrosContrato.libros(i);
+      const libroId = libro[0].toNumber();
+      const libroTitulo = libro[1];
+      const libroDescripcion = libro[2];
+      const libroDisponible = libro[3];
+      const libroCreadoEn = libro[4];
 
-      // Creating a tarea Card
-      let tareaElement = `<div class="card bg-dark rounded-0 mb-2">
+      // Creating a libro Card
+      let libroElement = `<div class="card bg-dark rounded-0 mb-2">
           <div class="card-header d-flex justify-content-between align-items-center">
-            <span>${tareaTitulo}</span>
+            <span>${libroTitulo}</span>
             <div class="form-check form-switch">
-              <input class="form-check-input" data-id="${tareaId}" type="checkbox" onchange="App.toggleTarea(this)" ${tareaHecha === true && "checked"}>
+              <input class="form-check-input" data-id="${libroId}" type="checkbox" onchange="App.toggleLibro(this)" ${libroDisponible === true && "checked"}>
             </div>
           </div>
           <div class="card-body">
-            <span>${tareaDescripcion}</span>
-            <span>${tareaHecha}</span>
-            <p class="text-muted">tarea was created ${new Date(
-              tareaCreadaEn * 1000
+            <span>${libroDescripcion}</span>
+            <span>${libroDisponible}</span>
+            <p class="text-muted">libro was created ${new Date(
+              libroCreadoEn * 1000
             ).toLocaleString()}</p>
             </label>
           </div>
         </div>`;
-      html += tareaElement;
+      html += libroElement;
     }
 
-    document.querySelector("#listaTareas").innerHTML = html;
+    document.querySelector("#listaLibros").innerHTML = html;
   },
   createTask: async (titulo, descripcion) => {
     try {
-      const result = await App.TareasContrato.crearTarea(titulo, descripcion, {
+      const result = await App.LibrosContrato.crearLibro(titulo, descripcion, {
         from: App.account,
       });
       console.log(result.logs[0].args);
@@ -87,9 +87,9 @@ App = {
       console.error(error);
     }
   },
-  toggleTarea: async (element) => {
-    const tareaId = element.dataset.id;
-    await App.TareasContrato.toggleTarea(tareaId, {
+  toggleLibro: async (element) => {
+    const libroId = element.dataset.id;
+    await App.LibrosContrato.toggleLibro(libroId, {
       from: App.account,
     });
     window.location.reload();

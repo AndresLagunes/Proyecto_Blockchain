@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   /**
    * Task form
    */
-  const formTareas = document.querySelector("#formTareas");
+  const formLibros = document.querySelector("#formLibros");
   
-  formTareas.addEventListener("submit", (e) => {
+  formLibros.addEventListener("submit", (e) => {
     e.preventDefault();
-    const titulo = formTareas["titulo"].value;
-    const descripcion = formTareas["descripcion"].value;
+    const titulo = formLibros["titulo"].value;
+    const descripcion = formLibros["descripcion"].value;
     App.createTask(titulo, descripcion);
   });
