@@ -55,16 +55,16 @@ App = {
       const libroCreadoEn = libro[4];
 
       // Creating a libro Card
-      let libroElement = `<div class="card bg-dark rounded-0 mb-2">
+      let libroElement = `<div class="card bg-dark rounded-0 mb-2 libro radius-5px">
           <div class="card-header d-flex justify-content-between align-items-center">
-            <span>${libroTitulo}</span>
+            <span class="title_book">${libroTitulo}</span>
             <div class="form-check form-switch">
               <input class="form-check-input" data-id="${libroId}" type="checkbox" onchange="App.toggleLibro(this)" ${libroDisponible === true && "checked"}>
             </div>
           </div>
           <div class="card-body">
-            <span>${libroDescripcion}</span>
-            <span>${libroDisponible}</span>
+          <span>${libroDescripcion}</span><br>
+          <span>${libroDisponible ? "Libro Disponible":"Libro No disponible"}</span>
             <p class="text-muted">libro was created ${new Date(
               libroCreadoEn * 1000
             ).toLocaleString()}</p>

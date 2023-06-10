@@ -1,5 +1,52 @@
 body {
-    background: #0A192F;
-    color: #fff;
-  }
+    background: #2d2d2d;
+    color: #f2f2f2;
+    font-family: 'Roboto', sans-serif;
+}
+.radius-5px{
+  border-radius: 5px !important;
+}
+.title{
+  font-weight: 700;
+  padding-bottom: 10px;
+}
+.cartera{
+  border: 2px solid #2d2d2d;
+  padding: 10px;
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 12.5px;
+  background-color: #f2f2f2;
+  color: #2d2d2d;
+  border-radius: 5px;
+}
+.bg-dark{
+  background-color:#0071C0 !important;
+}
+
+.text-muted{
+  color: #fff !important;
+  font-weight: 700;
+}
+.libro{
+  color: #fff;
   
+}
+.btn{
+  background-color: #fff;
+  color: #0390C4;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.btn:hover{
+  background-color: #29B6F6;
+}
+
+
+.form-control:focus{
+  outline:3px solid #f2f2f2;
+  color: #f2f2f2;
+}
+.form-control::placeholder{
+  color: #f2f2f2;
+}
